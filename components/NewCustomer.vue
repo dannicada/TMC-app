@@ -62,8 +62,16 @@
 
 <script>
 export default {
-    name: 'NewCustomer'
-
+    name: 'NewCustomer',
+    data() {
+        return {
+            first_name: '',
+            last_name: '',
+            address: '',
+            phone_number: '',
+            
+        }
+    }
 }
 </script>
 
