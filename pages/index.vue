@@ -5,9 +5,7 @@
       <div class="header-mobile__bar">
         <div class="container-fluid">
           <div class="header-mobile-inner">
-            <a class="logo" href="index.html">
-              <img src="/images/icon/logo.png" alt="CoolAdmin" />
-            </a>
+            <a class="logo" href="index.html"> <p>TMC</p> </a>
             <button class="hamburger hamburger--slider" type="button">
               <span class="hamburger-box">
                 <span class="hamburger-inner"></span>
@@ -20,7 +18,7 @@
         <div class="container-fluid">
           <ul class="navbar-mobile__list list-unstyled">
             <li class="has-sub">
-              <a class="js-arrow" href="#">
+              <a class="js-arrow">
                 <i class="fas fa-tachometer-alt"></i>Dashboard</a
               >
               <!-- <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -39,13 +37,17 @@
               </ul> -->
             </li>
             <li>
-              <a href="/active-loans"> <i class="fas fa-chart-bar"></i>Active Loans</a>
+              <a href="/active-loans">
+                <i class="fas fa-chart-bar"></i>Active Loans</a
+              >
             </li>
             <li>
-              <a href="table.html"> <i class="fas fa-table"></i>Pending Loans</a>
+              <a href="table.html">
+                <i class="fas fa-table"></i>Pending Loans</a
+              >
             </li>
             <li>
-              <a href="" @click="$router.push({path: '/approved-loans'})">
+              <a href="" @click="$router.push({ path: '/approved-loans' })">
                 <i class="far fa-check-square"></i>Confrimed Loans</a
               >
             </li>
@@ -120,37 +122,35 @@
     <!-- MENU SIDEBAR-->
     <aside class="menu-sidebar d-none d-lg-block">
       <div class="logo">
-        <a href="#">
-          <img src="/images/icon/logo.png" alt="Cool Admin" />
-        </a>
+        <a href="#"> <p>TMC</p> </a>
       </div>
       <div class="menu-sidebar__content js-scrollbar1">
         <nav class="navbar-sidebar">
           <ul class="list-unstyled navbar__list">
-            <li class="active has-sub">
-              <a class="js-arrow" href="#">
+            <li class="has-sub" :class="$route.path === '/' ? 'active' : ''">
+              <a class="js-arrow" @click="$router.push({ path: '/' })">
                 <i class="fas fa-tachometer-alt"></i>Dashboard</a
               >
-              <!-- <ul class="list-unstyled navbar__sub-list js-sub-list">
-                <li>
-                  <a href="index.html">Dashboard 1</a>
-                </li>
-                <li>
-                  <a href="index2.html">Dashboard 2</a>
-                </li>
-                <li>
-                  <a href="index3.html">Dashboard 3</a>
-                </li>
-                <li>
-                  <a href="index4.html">Dashboard 4</a>
-                </li>
-              </ul> -->
             </li>
-            <li>
-              <a @click="$router.push({path: 'active-loans'})"> <i class="fas fa-chart-bar"></i>Active Loans</a>
+            <li :class="$route.path === '/active-loans' ? 'active' : ''">
+              <a @click="$router.push({ path: 'active-loans' })">
+                <i class="fas fa-chart-bar"></i>Active Loans</a
+              >
             </li>
-            <li>
-              <a href="table.html"> <i class="fas fa-table"></i>Pending Loans</a>
+            <li :class="$route.path === '/pending-loans' ? 'active' : ''">
+              <a @click="$router.push({ path: 'pending-loans' })">
+                <i class="fas fa-table"></i>Pending Loans</a
+              >
+            </li>
+            <li :class="$route.path === '/overdue-loans' ? 'active' : ''">
+              <a @click="$router.push({ path: 'overdue-loans' })">
+                <i class="fas fa-table"></i>Overdue Loans</a
+              >
+            </li>
+            <li :class="$route.path === '/customers' ? 'active' : ''">
+              <a @click="$router.push({ path: 'customers' })">
+                <i class="fas fa-table"></i>customers</a
+              >
             </li>
           </ul>
         </nav>
@@ -165,7 +165,7 @@
         <div class="section__content section__content--p30">
           <div class="container-fluid">
             <div class="header-wrap">
-              <form class="form-header" action="" method="POST">
+              <!-- <form class="form-header" action="" method="POST">
                 <input
                   class="au-input au-input--xl"
                   type="text"
@@ -175,8 +175,8 @@
                 <button class="au-btn--submit" type="submit">
                   <i class="zmdi zmdi-search"></i>
                 </button>
-              </form>
-              <div class="header-button">
+              </form> -->
+              <div class="header-button float-right">
                 <div class="noti-wrap">
                   <div class="noti__item js-item-menu">
                     <i class="zmdi zmdi-comment-more"></i>
@@ -364,15 +364,21 @@
       <!-- END MAIN CONTENT-->
       <!-- END PAGE CONTAINER-->
     </div>
+    <new-bussiness />
+    <new-loan />
     <new-customer />
   </div>
 </template>
 
 <script>
 import NewCustomer from '@/components/NewCustomer.vue'
+import NewLoan from '@/components/NewLoan.vue'
+import NewBussiness from '@/components/NewBussiness.vue'
 export default {
   components: {
     NewCustomer,
+    NewLoan,
+    NewBussiness,
   },
 }
 </script>

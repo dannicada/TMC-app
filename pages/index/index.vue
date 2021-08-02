@@ -9,9 +9,9 @@
               <button
                 class="au-btn au-btn-icon au-btn--blue"
                 data-toggle="modal"
-                data-target="#newCustomer"
+                data-target="#newBussiness"
               >
-                <i class="zmdi zmdi-plus"></i>add customer
+                <i class="zmdi zmdi-plus">add bussiness</i>
               </button>
               <button
                 class="au-btn au-btn-icon au-btn--blue"
@@ -19,6 +19,13 @@
                 data-target="#newCustomer"
               >
                 <i class="zmdi zmdi-plus"></i>add customer
+              </button>
+              <button
+                class="au-btn au-btn-icon au-btn--blue"
+                data-toggle="modal"
+                data-target="#newLoan"
+              >
+                <i class="zmdi zmdi-plus"></i>new loan
               </button>
             </div>
           </div>
@@ -32,7 +39,7 @@
                     <i class="zmdi zmdi-account-o"></i>
                   </div>
                   <div class="text">
-                    <h2>10368</h2>
+                    <h2>{{ customers.length }}</h2>
                     <span>customers</span>
                   </div>
                 </div>
@@ -50,7 +57,7 @@
                     <i class="zmdi zmdi-shopping-cart"></i>
                   </div>
                   <div class="text">
-                    <h2>388,688</h2>
+                    <h2>0</h2>
                     <span>items solid</span>
                   </div>
                 </div>
@@ -86,7 +93,7 @@
                     <i class="zmdi zmdi-money"></i>
                   </div>
                   <div class="text">
-                    <h2>$1,060,386</h2>
+                    <h2>0</h2>
                     <span>total recieved</span>
                   </div>
                 </div>
@@ -97,7 +104,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-lg-6">
             <div class="au-card recent-report">
               <div class="au-card-inner">
@@ -160,15 +167,13 @@
               </div>
             </div>
           </div>
-        </div>
-     
-      
+        </div> -->
+
         <div class="row">
           <div class="col-md-12">
             <div class="copyright">
               <p>
-                Copyright © 2018 Colorlib. All rights reserved. Template by
-                <a href="https://colorlib.com">Colorlib</a>.
+                Copyright © 2021 TMC. All rights reserved. 
               </p>
             </div>
           </div>
@@ -182,11 +187,16 @@
 export default {
   data() {
     return {
-      customers: 0,
+      customers: [],
       sentOut: 0,
       recieved: 0,
       newAppWeek: 0,
     }
+  },
+  async fetch() {
+    console.log('it is fetching')
+    const customers = await this.$axios.get(`/customer/list/`)
+    this.customers = customers.data
   },
 }
 </script>

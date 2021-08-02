@@ -31,6 +31,18 @@
             </div>
             <div class="card-body card-block">
               <div class="form-group">
+                <label for="customer" class="form-control-label"
+                  >customer id</label
+                >
+                <input
+                  id="customer"
+                  v-model="customerId"
+                  type="number"
+                  placeholder="Enter customer id"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
                 <label for="amount" class="form-control-label"
                   >Loan amount</label
                 >
@@ -43,13 +55,13 @@
                 />
               </div>
               <div class="form-group">
-                <label for="vat" class="form-control-label"
-                  >Repayment amount</label
+                <label for="interest" class="form-control-label"
+                  >Interest</label
                 >
                 <input
-                  v-model="repayment_amount"
+                  id="interest"
+                  v-model="interest"
                   type="number"
-                  id="vat"
                   placeholder="DE1234567890"
                   class="form-control"
                 />
@@ -58,44 +70,10 @@
                 <label for="date" class="form-control-label"
                   >Repayment Date</label
                 >
-                <input type="date" id="date" class="form-control" />
+                <input v-model="dueDate" type="date" id="date" class="form-control" />
               </div>
               <div class="row form-group">
-                <div class="col-8">
-                  <div class="form-group">
-                    <label for="city" class="form-control-label"
-                      >home address</label
-                    >
-                    <input
-                      type="text"
-                      id="city"
-                      placeholder="Enter your city"
-                      class="form-control"
-                    />
-                  </div>
-                </div>
-                <div class="col-8">
-                  <div class="form-group">
-                    <label for="postal-code" class="form-control-label"
-                      >Occupation</label
-                    >
-                    <input
-                      type="text"
-                      id="postal-code"
-                      placeholder="Postal Code"
-                      class="form-control"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="country" class="form-control-label">email</label>
-                <input
-                  type="text"
-                  id="country"
-                  placeholder="Country name"
-                  class="form-control"
-                />
+                <div class="col-8"></div>
               </div>
             </div>
           </div>
@@ -104,7 +82,9 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Cancel
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button @click="createLoan" type="button" class="btn btn-primary">
+            Confirm
+          </button>
         </div>
       </div>
     </div>
@@ -118,11 +98,41 @@ export default {
   data() {
     return {
       customer: '',
-      repayment_date: '',
+      repaymentDate: '',
+      loanType: '',
       amount: '',
       interest: '',
-      repayment_amount: '',
+      dueDate: '',
     }
+  },
+  methods: {
+    async createLoan() {
+      this.$nuxt.$loading.start()
+      const formData = await new FormData()
+      formData.append('customer', this.customer)
+      formData.append('amount', this.amount)
+      formData.append('due_date', this.dueDate)
+      formData.append('interest', this.interest)
+
+      try {
+        this.$nuxt.$loading.start()
+        const response = await this.$axios.post(`/loan/create/`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        console.log(response)
+        if (response.status === 201) {
+          this.$toast.success('Loan request was created successfuly')
+          this.$router.go()
+        }
+      } catch (err) {
+        console.log(err.response)
+        this.$toast.error('an error occured')
+      } finally {
+        this.$nuxt.$loading.finish()
+      }
+    },
   },
 }
 </script>

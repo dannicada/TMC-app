@@ -42,22 +42,21 @@
                 />
               </div>
               <div class="form-group">
-                <label for="vat" class="form-control-label">last name</label>
+                <label for="last-name" class="form-control-label"
+                  >last name</label
+                >
                 <input
+                  id="last-name"
                   type="text"
-                  id="vat"
-                  placeholder="DE1234567890"
+                  placeholder="enter last name"
                   class="form-control"
                 />
               </div>
               <div class="form-group">
-                <label for="street" class="form-control-label">sex</label>
-                <input
-                  type="text"
-                  id="street"
-                  placeholder="Enter street name"
-                  class="form-control"
-                />
+                <input id="male" v-model="sex" type="radio" value="male" />
+                <label for="male">male</label>
+                <input id="female" v-model="sex" type="radio" value="female" />
+                <label for="female">female</label>
               </div>
               <div class="row form-group">
                 <div class="col-8">
@@ -66,8 +65,8 @@
                       >home address</label
                     >
                     <input
-                      type="text"
                       id="city"
+                      type="text"
                       placeholder="Enter your city"
                       class="form-control"
                     />
@@ -75,24 +74,96 @@
                 </div>
                 <div class="col-8">
                   <div class="form-group">
-                    <label for="postal-code" class="form-control-label"
+                    <label for="occupation" class="form-control-label"
                       >Occupation</label
                     >
                     <input
+                      id="occupation"
+                      v-model="occupation"
                       type="text"
-                      id="postal-code"
-                      placeholder="Postal Code"
+                      placeholder="Enter occupation"
                       class="form-control"
                     />
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label for="country" class="form-control-label">email</label>
+                <label for="email" class="form-control-label">email</label>
                 <input
+                  id="email"
+                  v-model="email"
                   type="text"
-                  id="country"
                   placeholder="Country name"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="phone-number" class="form-control-label"
+                  >phone number</label
+                >
+                <input
+                  id="phone-number"
+                  v-model="phoneNumber"
+                  type="text"
+                  placeholder="Country name"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="account-number" class="form-control-label"
+                  >account number</label
+                >
+                <input
+                  id="account-number"
+                  v-model="accountNumber"
+                  type="number"
+                  placeholder="Enter account number"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="bvn" class="form-control-label">bvn</label>
+                <input
+                  id="bvn"
+                  v-model="bvn"
+                  type="number"
+                  placeholder="Enter bvn"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="guarantorName" class="form-control-label"
+                  >guarantor name</label
+                >
+                <input
+                  id="guarantorName"
+                  v-model="guarantorName"
+                  type="text"
+                  placeholder="Enter guarantor name"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="guarantorAddress" class="form-control-label"
+                  >guarantor address</label
+                >
+                <input
+                  id="guarantorAddress"
+                  v-model="guarantorAddress"
+                  type="text"
+                  placeholder="Enter guarantor address"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="guarantorPhoneNumber" class="form-control-label"
+                  >guarantor phone number</label
+                >
+                <input
+                  id="guarantorPhoneNumber"
+                  v-model="guarantorPhoneNumber"
+                  type="text"
+                  placeholder="Enter guarantor address"
                   class="form-control"
                 />
               </div>
@@ -103,7 +174,9 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Cancel
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button @click="createCustomer" type="button" class="btn btn-primary">
+            Confirm
+          </button>
         </div>
       </div>
     </div>
@@ -116,10 +189,18 @@ export default {
   name: 'NewCustomer',
   data() {
     return {
-      first_name: '',
-      last_name: '',
+      firstName: '',
+      lastName: '',
       address: '',
-      phone_number: '',
+      phoneNumber: '',
+      email: '',
+      occupation: '',
+      accountNumber: '',
+      bvn: '',
+      guarantorName: '',
+      guarantorAddress: '',
+      guarantorPhoneNumber: '',
+      sex: '',
     }
   },
   methods: {
@@ -127,14 +208,33 @@ export default {
       this.$nuxt.$loading.start()
       const formData = await new FormData()
       formData.append('email', this.email)
-      formData.append('firstName', this.password)
+      formData.append('first_name', this.firstName)
+      formData.append('last_name', this.lastName)
+      formData.append('phone_number', this.phoneNumber)
+      formData.append('address', this.address)
+      formData.append('sex', this.sex)
+      formData.append('occupation', this.occupation)
+      formData.append('account_number', this.accountNumber)
+      formData.append('bvn', this.bvn)
+      formData.append('guarantor_name', this.guarantorName)
+      formData.append('guarantor_address', this.guarantorAddress)
+      formData.append('guarantor_phone_number', this.guarantorPhoneNumber)
+      formData.append('bvn', this.bvn)
+
       try {
-        const response = await this.$auth.loginWith('local', { data: formData })
+        this.$nuxt.$loading.start()
+        const response = await this.$axios.post(`/customer/create/`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
         console.log(response)
+        if (response.status === 201) {
+          this.$toast.success('Customer profile was created successfuly')
+        }
       } catch (err) {
         console.log(err.response)
-        if (err.response.status === 400)
-          this.$toast.error('email or password incorrect')
+        this.$toast.error('an error occured')
       } finally {
         this.$nuxt.$loading.finish()
       }
