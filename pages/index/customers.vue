@@ -1,13 +1,15 @@
 <template>
   <div class="row pt-5 mt-5">
     <div class="col-lg-12">
-      <h2 class="title-1 m-b-25">All customers </h2>
+      <h2 class="title-1 m-b-25">All customers</h2>
       <div class="table-responsive table--no-card m-b-40">
         <table class="table table-borderless table-striped table-earning">
           <thead>
             <tr>
               <th>date joined</th>
               <th>customer ID</th>
+              <th>first name</th>
+              <th>last name</th>
               <th>customer email</th>
               <th class="text-right">phone number</th>
               <th class="text-right">address</th>
@@ -17,11 +19,13 @@
           <tbody>
             <tr v-for="(customer, key) in customers" :key="key">
               <td>2018-09-29 05:57</td>
-              <td>{{customer.id}}</td>
-              <td>{{customer.email}}</td>
-              <td class="text-right">{{customer.phone_number}}</td>
-              <td class="text-right">{{customer.address}}</td>
-              <td class="text-right">{{customer.occupation}}</td>
+              <td>{{ customer.id }}</td>
+              <td>{{ customer.first_name }}</td>
+              <td>{{ customer.last_name }}</td>
+              <td>{{ customer.email }}</td>
+              <td class="text-right">{{ customer.phone_number }}</td>
+              <td class="text-right">{{ customer.address }}</td>
+              <td class="text-right">{{ customer.occupation }}</td>
             </tr>
           </tbody>
         </table>

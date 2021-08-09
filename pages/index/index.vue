@@ -6,13 +6,13 @@
           <div class="col-md-12">
             <div class="overview-wrap">
               <h2 class="title-1">overview</h2>
-              <button
+              <!-- <button
                 class="au-btn au-btn-icon au-btn--blue"
                 data-toggle="modal"
                 data-target="#newBussiness"
               >
                 <i class="zmdi zmdi-plus">add bussiness</i>
-              </button>
+              </button> -->
               <button
                 class="au-btn au-btn-icon au-btn--blue"
                 data-toggle="modal"
@@ -49,7 +49,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-6 col-lg-3">
+          <!-- <div class="col-sm-6 col-lg-3">
             <div class="overview-item overview-item--c2">
               <div class="overview__inner">
                 <div class="overview-box clearfix">
@@ -66,7 +66,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="col-sm-6 col-lg-3">
             <div class="overview-item overview-item--c3">
               <div class="overview__inner">
@@ -75,7 +75,7 @@
                     <i class="zmdi zmdi-calendar-note"></i>
                   </div>
                   <div class="text">
-                    <h2>1,086</h2>
+                    <h2>0</h2>
                     <span>total paid out</span>
                   </div>
                 </div>

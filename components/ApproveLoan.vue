@@ -19,7 +19,6 @@
             class="close"
             data-dismiss="modal"
             aria-label="Close"
-            @click="toggle()"
           >
             <span aria-hidden="true">&times;</span>
           </button>
@@ -36,7 +35,7 @@
                   >Loan amount</label
                 >
                 <input
-                  v-model="amount"
+                  :value="currentLoan.amount"
                   type="number"
                   id="amount"
                   placeholder=""
@@ -50,9 +49,9 @@
                 >
                 <input
                   id="repaymentAmount"
-                  v-model="repaymentAmount"
+                  :value="currentLoan.interest"
                   type="number"
-                  placeholder=""
+                  :placeholder="currentLoan.interest"
                   disabled
                   class="form-control"
                 />
@@ -61,7 +60,7 @@
                 <label for="date" class="form-control-label"
                   >Repayment Date</label
                 >
-                <input id="date" type="date" disabled class="form-control" />
+                <input id="date" :value="currentLoan.due_date" type="date" disabled class="form-control" />
               </div>
             </div>
           </div>
@@ -116,7 +115,7 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Decline
           </button>
-          <button type="button" class="btn btn-primary">Approve</button>
+          <button type="button" class="btn btn-primary" @click="approveLoan">Approve</button>
         </div>
       </div>
     </div>
@@ -126,13 +125,13 @@
 
 <script>
 export default {
-  name: 'NewCustomer',
+  name: 'ApproveLoan',
   props: {
+    // eslint-disable-next-line vue/require-default-prop
     loan: {
       type: Object,
       // eslint-disable-next-line vue/require-valid-default-prop
       default: {
-        amount: 1000,
       },
     },
   },
@@ -149,15 +148,21 @@ export default {
       approved: 'true',
     }
   },
+  computed: {
+    currentLoan() {
+      return this.loan
+    }
+  },
   methods: {
     async approveLoan() {
+      console.log(this.currentLoan)
       const formData = await new FormData()
       formData.append('approved', this.approved)
       try {
         this.$nuxt.$loading.start()
 
         const response = await this.$axios.put(
-          `/laon/update/${this.loan.id}/`,
+          `/laon/update/${this.currentLoan.id}/`,
           formData,
           {
             headers: {

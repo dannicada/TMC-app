@@ -307,10 +307,10 @@
                 <div class="account-wrap">
                   <div class="account-item clearfix js-item-menu">
                     <div class="image">
-                      <img src="/images/icon/avatar-01.jpg" alt="John Doe" />
+                      <img src="/images/icon/avatar-01.jpg" alt="Mrs Joyce Udoka" />
                     </div>
                     <div class="content">
-                      <a class="js-acc-btn" href="#">john doe</a>
+                      <a class="js-acc-btn" href="#">Mrs Joyce Udoka</a>
                     </div>
                     <div class="account-dropdown js-dropdown">
                       <div class="info clearfix">
@@ -318,13 +318,13 @@
                           <a href="#">
                             <img
                               src="/images/icon/avatar-01.jpg"
-                              alt="John Doe"
+                              alt="Mrs Joyce Udoka"
                             />
                           </a>
                         </div>
                         <div class="content">
                           <h5 class="name">
-                            <a href="#">john doe</a>
+                            <a href="#">Mrs Joyce Udoka</a>
                           </h5>
                           <span class="email">johndoe@example.com</span>
                         </div>

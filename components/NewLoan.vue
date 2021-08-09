@@ -36,7 +36,7 @@
                 >
                 <input
                   id="customer"
-                  v-model="customerId"
+                  v-model="customer"
                   type="number"
                   placeholder="Enter customer id"
                   class="form-control"

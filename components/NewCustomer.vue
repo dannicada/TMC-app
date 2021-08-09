@@ -31,13 +31,14 @@
             </div>
             <div class="card-body card-block">
               <div class="form-group">
-                <label for="company" class="form-control-label"
+                <label for="first-name" class="form-control-label"
                   >first name</label
                 >
                 <input
+                  id="first-name"
+                  v-model="firstName"
                   type="text"
-                  id="company"
-                  placeholder="Enter your company name"
+                  placeholder="Enter your first-name"
                   class="form-control"
                 />
               </div>
@@ -47,6 +48,7 @@
                 >
                 <input
                   id="last-name"
+                  v-model="lastName"
                   type="text"
                   placeholder="enter last name"
                   class="form-control"
@@ -66,6 +68,7 @@
                     >
                     <input
                       id="city"
+                      v-model="address"
                       type="text"
                       placeholder="Enter your city"
                       class="form-control"
@@ -111,7 +114,7 @@
               </div>
               <div class="form-group">
                 <label for="account-number" class="form-control-label"
-                  >account number</label
+                  >account number*</label
                 >
                 <input
                   id="account-number"
@@ -122,7 +125,7 @@
                 />
               </div>
               <div class="form-group">
-                <label for="bvn" class="form-control-label">bvn</label>
+                <label for="bvn" class="form-control-label">bvn*</label>
                 <input
                   id="bvn"
                   v-model="bvn"
@@ -133,7 +136,7 @@
               </div>
               <div class="form-group">
                 <label for="guarantorName" class="form-control-label"
-                  >guarantor name</label
+                  >guarantor name*</label
                 >
                 <input
                   id="guarantorName"
@@ -145,7 +148,7 @@
               </div>
               <div class="form-group">
                 <label for="guarantorAddress" class="form-control-label"
-                  >guarantor address</label
+                  >guarantor address*</label
                 >
                 <input
                   id="guarantorAddress"
@@ -157,7 +160,7 @@
               </div>
               <div class="form-group">
                 <label for="guarantorPhoneNumber" class="form-control-label"
-                  >guarantor phone number</label
+                  >guarantor phone number*</label
                 >
                 <input
                   id="guarantorPhoneNumber"
@@ -230,11 +233,13 @@ export default {
         })
         console.log(response)
         if (response.status === 201) {
-          this.$toast.success('Customer profile was created successfuly')
+          this.$toast.success('Customer profile was created successfuly');
+          this.$router.go();
         }
       } catch (err) {
         console.log(err.response)
         this.$toast.error('an error occured')
+        this.$toast.error('please fill in the required fields')
       } finally {
         this.$nuxt.$loading.finish()
       }
