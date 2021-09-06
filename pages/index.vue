@@ -271,7 +271,7 @@
                       <div class="notifi__title">
                         <p>You have 3 Notifications</p>
                       </div>
-                      <div class="notifi__item">
+                      <!-- <div class="notifi__item">
                         <div class="bg-c1 img-cir img-40">
                           <i class="zmdi zmdi-email-open"></i>
                         </div>
@@ -279,8 +279,8 @@
                           <p>You got a email notification</p>
                           <span class="date">April 12, 2018 06:50</span>
                         </div>
-                      </div>
-                      <div class="notifi__item">
+                      </div> -->
+                      <!-- <div class="notifi__item">
                         <div class="bg-c2 img-cir img-40">
                           <i class="zmdi zmdi-account-box"></i>
                         </div>
@@ -288,8 +288,8 @@
                           <p>Your account has been blocked</p>
                           <span class="date">April 12, 2018 06:50</span>
                         </div>
-                      </div>
-                      <div class="notifi__item">
+                      </div> -->
+                      <!-- <div class="notifi__item">
                         <div class="bg-c3 img-cir img-40">
                           <i class="zmdi zmdi-file-text"></i>
                         </div>
@@ -297,7 +297,7 @@
                           <p>You got a new file</p>
                           <span class="date">April 12, 2018 06:50</span>
                         </div>
-                      </div>
+                      </div> -->
                       <div class="notifi__footer">
                         <a href="#">All notifications</a>
                       </div>
@@ -307,7 +307,7 @@
                 <div class="account-wrap">
                   <div class="account-item clearfix js-item-menu">
                     <div class="image">
-                      <img src="/images/icon/avatar-01.jpg" alt="Mrs Joyce Udoka" />
+                      <img src="/images/avatar_test.jpeg" alt="Mrs Joyce Udoka" />
                     </div>
                     <div class="content">
                       <a class="js-acc-btn" href="#">Mrs Joyce Udoka</a>
@@ -317,7 +317,7 @@
                         <div class="image">
                           <a href="#">
                             <img
-                              src="/images/icon/avatar-01.jpg"
+                              src="/images/avatar_test.jpeg"
                               alt="Mrs Joyce Udoka"
                             />
                           </a>
